@@ -1,6 +1,6 @@
 package main;
 
-//-gui -agents BankAgent:main.BankAgent
+// -gui -agents BankAgent:main.BankAgent
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -104,7 +104,7 @@ public class BankAgent extends Agent {
 			return false;
 		}
 		accounts.put(name, new Account(name, pin, balance));
-		log("Created account for user: " + name);
+		log("Created account for user: " + name + ", Initial Balance: " + balance);
 		saveAccounts();
 		return true;
 	}
@@ -241,7 +241,7 @@ public class BankAgent extends Agent {
 		String atmName = "ATMAgent" + (++atmCounter);
 
 		try {
-			AgentController atmAgent = container.createNewAgent(atmName, "proiect.ATMAgent", null);
+			AgentController atmAgent = container.createNewAgent(atmName, "main.ATMAgent", null);
 			atmAgent.start();
 			AGENT_NAMES.add(atmName);
 		} catch (StaleProxyException e) {

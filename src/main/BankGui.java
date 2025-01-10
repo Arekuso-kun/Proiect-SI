@@ -18,6 +18,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 class BankGui extends JFrame {
@@ -39,7 +40,7 @@ class BankGui extends JFrame {
 		p.add(nameField);
 
 		p.add(new JLabel("PIN:"));
-		pinField = new JTextField(15);
+		pinField = new JPasswordField(15);
 		pinField.addKeyListener(new KeyAdapter() {
 			// Check if input if is digit and not more than 4 digits
 			public void keyTyped(KeyEvent e) {
@@ -95,8 +96,8 @@ class BankGui extends JFrame {
 					}
 
 					balance = Double.parseDouble(balanceText);
-					if (balance <= 0) {
-						throw new Exception("Balance must be greater than zero.");
+					if (balance < 0) {
+						throw new Exception("Balance must be greater or equal to zero.");
 					}
 
 					boolean created = myAgent.createAccount(name, pin, balance);
